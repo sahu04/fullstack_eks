@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Frontend</title>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 60px;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Frontend Running ✅</h1>
+
+  <button onclick="callBackend()">Call Backend API</button>
+
+  <div id="result"></div>
+
+  <script>
+    function callBackend() {
+      fetch("/api/health")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("result").innerText =
+            "Backend says: " + data.status;
+        })
+        .catch(err => {
+          document.getElementById("result").innerText =
+            "Error calling backend";
+          console.error(err);
+        });
+    }
+  </script>
+
+</body>
+</html>
+EOF
+
